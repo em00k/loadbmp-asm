@@ -1,4 +1,4 @@
-M_GETSETDRV 	equ $89
+M_GETSETDRV 		equ $89
 F_OPEN 			equ $9a
 F_CLOSE 		equ $9b
 F_READ 			equ $9d
@@ -9,7 +9,7 @@ F_SET_DIR 		equ $a9
 
 FA_READ 		equ $01
 FA_APPEND 		equ $06
-FA_OVERWRITE 	equ $0C
+FA_OVERWRITE 		equ $0C
 
 	macro ESXDOS command
 		rst 8
