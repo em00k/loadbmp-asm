@@ -5,7 +5,7 @@
 ; em00k2020 / David Saphier 23/09/20
 
 	;device zxspectrumnext 
-	device zxspectrum48						; we will use a sna for the example 
+	device zxspectrum48						; we will use a snx for the example 
 	CSPECTMAP loadbmp_test.map 	
 	include "macros.asm"					; contains out nextreg macros 
 
