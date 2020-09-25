@@ -31,13 +31,13 @@ main_prog:
 loadloop: 
 			
 			ld a,c							; get the bank in c and put in a 
-			nextreg_a $51					; set mmu slot 1 to bank L2bank ($2000-3fff)
+			nextreg_a $52					; set mmu slot 2 to bank L2bank ($4000-5fff)
 			inc c							; inc our bank
 			push bc 						; save bc so we can use again 
 							
 			
 			ld ix,bmpfilename				; point ix to our filename 
-			ld hl,$2000						; destination address $2000 
+			ld hl,$4000						; destination address $4000 
 			ld bc,$2000						; amount of data to load $2000
 			ld de,(L2offsetpos)				; offset inside the bmp file we want to load, we start at the last 8kb
 			call load 						; call esxdos routine to load 8kbchunk 
@@ -66,10 +66,10 @@ image_loop:
 
 flip_layer2lines:
 	
-			; $2000 - $3fff Layer2 BMP data loaded 
+			; $4000 - $5fff Layer2 BMP data loaded 
 			; the data is upside down so we need to flip line 0 - 32
 			; hl = top line first left pixel, de = bottom line, first left pixel 
-			ld hl,$2000 : ld de,$3f00 : ld bc,$1000
+			ld hl,$4000 : ld de,$5f00 : ld bc,$1000
 	
 .copyloop:	
 			ld a,(hl)						; hl is the top lines, get the value into a
@@ -93,11 +93,12 @@ flip_layer2lines:
 			ret			
 
 setregisters:
-	
+
+			nextreg_nn $8,%11111010
 			nextreg_nn $15,%00010000		; set USL layer order 
 			nextreg_nn $12,16				; set base bank for Layer 2 (in 16kb mode)
-			nextreg_nn $69,%10000000		; display control reg, 0 L2 off, set to %10000000 to show draw
-			nextreg_nn $7,0					; cpu speed 28, set to 0 to see in slow, 
+			nextreg_nn $69,%00000000		; display control reg, 0 L2 off, set to %10000000 to show draw
+			nextreg_nn $7,3					; cpu speed 28, set to 0 to see in slow, 
 			nextreg_nn $14,0				; global transparency set to palette 0 = black 
 			xor a : out ($fe),a				; border black 
 			ret 
@@ -123,6 +124,7 @@ L2offsetpos
 bmpfilename:
 			db "1.bmp",0				; image file 
 		
-	savesna "bmptest.sna",main_prog
+								
+	savesna "bmptest.snx",main_prog										
 	
 	

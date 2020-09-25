@@ -3,16 +3,18 @@ load:
 	
 	push hl  					; save destination 
 	push bc 					; save size 
+	push de 
 	ld a, '*' 					; use current drive
 	ld b, FA_READ 				; set mode
-	;ld ix, fname 				; ix = filename pointer 
 
 	ESXDOS F_OPEN
 	jp c,failedtoload    		; jp to failed if failed to open 
 	
 	ld (handle), a 				; store handle
 	
-	ld l, 0 					; seek from start of file
+	pop de 
+	
+	ld ix, 1 					; seek from start of file
 	ld bc, 0
 
 	ESXDOS F_SEEK
