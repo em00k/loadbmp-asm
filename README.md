@@ -21,5 +21,5 @@ and data from 1078 is used.
 
 The default layer ram bank is set with reg $12 - this uses a 16kb bank value so it is 
 set to 16. When we load in the bitmap data we use 8kb banks so we double this 16 *2 so 
-load in from bank 32, which is paged in to MMU slote 1 $2000 - $3fff. 
+load in to bank 32, which is paged in to MMU slote 1 $2000 - $3fff. 
 
