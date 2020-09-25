@@ -1,25 +1,26 @@
 	
 load:
+; on entry ix = filename 
+; hl dest addresss
+; bc length of data to load
+; de offset in file start 
 	
 	push hl  					; save destination 
 	push bc 					; save size 
-	push de 
 	ld a, '*' 					; use current drive
-	ld b, FA_READ 				; set mode
+	ld b, FA_READ 					; set mode
 
 	ESXDOS F_OPEN
-	jp c,failedtoload    		; jp to failed if failed to open 
+	jp c,failedtoload    				; jp to failed if failed to open 
 	
-	ld (handle), a 				; store handle
+	ld (handle), a 					; store handle
 	
-	pop de 
-	
-	ld ix, 1 					; seek from start of file
+	ld l, 0 					; seek from start of file
 	ld bc, 0
 
 	ESXDOS F_SEEK
 	
-	ld a, (handle) 				; restore handle
+	ld a, (handle) 					; restore handle
 
 	pop bc 						; read length 
 	pop ix 						; memory dest
@@ -27,7 +28,7 @@ load:
 	ESXDOS F_READ
 
 	ld a, (handle)
-	ESXDOS F_CLOSE 			; close file
+	ESXDOS F_CLOSE 					; close file
 	
 	ret
 
