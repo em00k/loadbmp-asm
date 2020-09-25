@@ -12,7 +12,7 @@ load:
 	
 	ld (handle), a 				; store handle
 	
-	pop de 
+	pop de 						; offset 
 	
 	ld ix, 1 					; seek from start of file
 	ld bc, 0
