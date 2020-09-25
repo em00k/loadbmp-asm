@@ -56,7 +56,7 @@ loadloop:
 			ld (L2offsetpos),hl 			; reset the l2offsetpos
 	
 			nextreg_nn $69,%10000000		; enable layer 2 
-			nextreg_nn $51,$ff				; return ROM to slot 1 
+			nextreg_nn $52,$a				; return bank $a to slot 2
 	
 image_loop:		
 
