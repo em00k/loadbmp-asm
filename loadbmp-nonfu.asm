@@ -19,7 +19,7 @@ startbank 	equ 32
 ; main program 
 	
 main_prog:
-			di 								; di so ints dont trigger when we've paged out ROM 
+			di 								; di so ints dont trigger
 			ld sp,mystack 					; just for saftey 						
 			call clearula					; clear ula to black	
 			call setregisters 				; set relevant nregs
