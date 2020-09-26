@@ -1,10 +1,11 @@
 ; load a bmp 256 indexed image that is stored upside down 
-; It uses a small memory footprint between $2000 - $3FFF
+; It uses a small memory footprint between $4000 - $5FFF, this is banked in so wont affect
+; any code or data that lives in normal bank 5
 ; Image needs to be 256*192 256 colours with the Next uniform palette. 
 ; em00k2020 / David Saphier 23/09/20
 
 	;device zxspectrumnext 
-	device zxspectrum48						; we will use a sna for the example 
+	device zxspectrum48						; we will use a snx for the example 
 	CSPECTMAP loadbmp_test.map 	
 	include "macros.asm"					; contains out nextreg macros 
 
@@ -18,7 +19,7 @@ startbank 	equ 32
 ; main program 
 	
 main_prog:
-			di 								; di so ints dont trigger when we've paged out ROM 
+			di 								; di so ints dont trigger
 			ld sp,mystack 					; just for saftey 						
 			call clearula					; clear ula to black	
 			call setregisters 				; set relevant nregs

@@ -1,4 +1,4 @@
-# loadbmp
+# loadbmp on the ZX Next
  Loading a 256 index BMP on the ZX Next
 
 Bitmaps when saved as a 256 index BMP are more often then not stored upside down.
@@ -20,6 +20,9 @@ The image should be 256*192 256 colours indexed. The header and palette is curre
 and data from 1078 is used. 
 
 The default layer ram bank is set with reg $12 - this uses a 16kb bank value and we set this 
-to 16. When we load in the bitmap data we use 8kb banks, we double this 16 *2 and  
-load in to bank 32, which is paged in to MMU slote 2 $4000 - $5fff. 
+to 16. When we load in the bitmap data we use 8kb banks, we double this 16 *2 and load in to bank 32, 
+which is paged in to MMU slote 2 $4000 - $5fff. 
+
+I did originally have it work at $2000 $3fff which was ideal as it was well away from any 
+other code, however this turned out to only work in CSpect! So had to move it $4000. 
 
