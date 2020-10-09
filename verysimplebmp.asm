@@ -50,12 +50,12 @@ waitFrame:
 	org $e000 
 	incbin "./data/al.bmp",1078				; this is without remapping and flipping
 	
-	SAVENEX OPEN "verytsimple.nex", main_prog , $5ffe
+	SAVENEX OPEN "verysimple.nex", main_prog , $5ffe
     SAVENEX CORE 3, 0, 0      
     SAVENEX CFG 0, 0            
 	SAVENEX AUTO 
     SAVENEX CLOSE   	
 	
 	IF ((_ERRORS = 0) && (_WARNINGS = 0))
-		SHELLEXEC ".\bin\cspect.exe -sound -w3 -16bit -basickeys -tv -zxnext -brk -map=verysimplebmp.map  verytsimple.nex"
+		SHELLEXEC ".\bin\cspect.exe -sound -w3 -16bit -basickeys -tv -zxnext -brk verysimple.nex"
 	ENDIF
