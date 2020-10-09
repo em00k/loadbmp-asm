@@ -7,7 +7,7 @@
 	;device zxspectrumnext 
 	device zxspectrum48						; we will use a snx for the example 
 	CSPECTMAP loadbmp_test.map 	
-	include "macros.asm"					; contains out nextreg macros 
+	include ".\utils\macros.asm"					; contains out nextreg macros 
 
 mystack 	equ $7ffe						; so we know where stack is 
 startoffset equ 1078+16384+16384+8192		; startpos in bmp file, read from LAST 8kb, skip header. bmp must be 256 indexed 
@@ -120,12 +120,13 @@ L2bank:
 L2offsetpos
 			dw 1078+16384+16384+8192	; this points to the last 8kb of the bmp file 
 	
-			include "esxdos.asm" 		; this contains the load subroutines 
+			include ".\utils\esxdos.asm" 		; this contains the load subroutines 
 
 bmpfilename:
 			db "1.bmp",0				; image file 
 		
 								
-	savesna "bmptest.snx",main_prog										
-	
-	
+	savesna "bmptest1.snx",main_prog			
+	IF ((_ERRORS = 0) && (_WARNINGS = 0))
+		SHELLEXEC ".\bin\cspect.exe -sound -w3 -16bit -basickeys -tv -zxnext -mmc=.\data\ -brk bmptest1.snx"
+	ENDIF

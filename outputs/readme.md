@@ -1,0 +1,1 @@
+Comparison from Jim's .bmpload and some of Remy Sharps online converter. 

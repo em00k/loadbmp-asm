@@ -14,7 +14,7 @@ load:
 	
 	pop de 						; offset 
 	
-	ld ix, 1 					; seek from start of file
+	ld ixl, 0 					; seek from start of file
 	ld bc, 0
 
 	ESXDOS F_SEEK
@@ -32,7 +32,7 @@ load:
 	ret
 
 failedtoload:
-
+	nextreg $69,0
 	ld hl,failedtoloadtext : call printrstfailed
 	push ix : pop hl : call printrstfailed
 	di : halt 

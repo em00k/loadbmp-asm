@@ -1,4 +1,11 @@
-# loadbmp on the ZX Next
+# update 
+loadbmp-resample-palette-fade.asm is an updated version that will resample the colours
+to the nextpalette RGB999. Input should still be 256*192 256 colours.
+
+verysimplebmp.asm shows how to include a bmp into your NEX file and point L2 at 
+that RAM with reg $12 
+
+# loadbmp on the ZX Next loadbmp-nonfu.asm
  Loading a 256 index BMP on the ZX Next
 
 Bitmaps when saved as a 256 index BMP are more often then not stored upside down.
@@ -11,8 +18,8 @@ Memory location $4000 - $5fff is used to load the data direct to the Layer 2 ban
 As the data is stored backwards in a lot of cases the code will load the BMP in 8kb 
 chunks and swap each of the 32 lines from top to bottom resulting in the correct image.
 
-There's no palette quantizing, the BMP needs to have the default Next's uniform
-palette without writing additional code to handle the palette data. 
+The palette will be remapped if you use loadbmp-resample-palette-fade, loadbmp-nonfu.asm
+requires the BMP to already have the Next uniform 256 cokour palatte. 
 
 run a.bat to assemble and run with Cspect. 
 
