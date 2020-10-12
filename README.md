@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/em00k/loadbmp-asm/master/outputs/9bit-emk.png)
+
 # update 
 loadbmp-resample-palette-fade.asm is an updated version that will resample the colours
 to the nextpalette RGB999. Input should still be 256*192 256 colours.
