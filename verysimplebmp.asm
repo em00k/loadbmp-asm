@@ -26,8 +26,8 @@ WaitRasterLine:
 	
 waitFrame:
 
-	ld bc	,$243b
-	ld a	,$1e
+	ld 	bc,$243b
+	ld 	a,$1e
 	out 	(c),a
 	inc 	b
 	in 	a,(c)
