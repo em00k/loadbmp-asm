@@ -52,11 +52,11 @@ waitFrame:
 	
 	MMU 	7 n,$20*2						; $20*2 is our 8kn bank $40 
 	org 	$e000 
-	incbin 	"./data/1.bmp",1078				; this has been remapped and flipped 
+	incbin 	"./data/1.bmp",1078					; skip first 1078 bytes
 	
 	MMU 	7 n,$23*2						; $23*2 is our 8kn bank $46 
 	org 	$e000 
-	incbin 	"./data/al.bmp",1078				; this is without remapping and flipping
+	incbin 	"./data/al.bmp",1078					; skip first 1078 bytes
 	
 	SAVENEX OPEN "verysimple.nex", main_prog , $5ffe
     	SAVENEX CORE 3, 0, 0      
