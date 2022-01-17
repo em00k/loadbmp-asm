@@ -50,8 +50,8 @@ waitFrame:
 	
 	; this bit places code inside the NEX that is loaded into RAM > 65536
 	
-	MMU 	7 n,$20*2						; $20*2 is our 8kn bank $40 
-	org 	$e000 
+	MMU 	7 n,$20*2						; $20*2 is our 8kn bank $40, using slot MMU 7
+	org 	$e000 							; n will bank roll the inc data if over 8kb
 	incbin 	"./data/1.bmp",1078					; skip first 1078 bytes
 	
 	MMU 	7 n,$23*2						; $23*2 is our 8kn bank $46 
